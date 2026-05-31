@@ -1,5 +1,8 @@
 # Maintainer Signal Kit
 
+[![CI](https://github.com/ismailskr12/maintainer-signal-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/ismailskr12/maintainer-signal-kit/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 Maintainer Signal Kit is an evidence-pack generator for open-source maintainers.
 It helps a maintainer turn a local repository into a clear, honest dossier for
 support programs, credit programs, security reviews, and internal maintenance
@@ -30,6 +33,8 @@ maintenance report and an application draft, but leaves unverifiable claims as
 placeholders. That makes it useful without encouraging fake adoption metrics.
 
 ## Install
+
+Repository: <https://github.com/ismailskr12/maintainer-signal-kit>
 
 ```bash
 python -m pip install -e .
