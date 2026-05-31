@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import subprocess
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from .models import AuditReport, GitActivity, Signal
@@ -71,7 +71,7 @@ def _git_activity(root: Path) -> GitActivity:
     if not (root / ".git").exists():
         return GitActivity(available=False, detail="not a git repository")
 
-    since = (datetime.now(UTC) - timedelta(days=90)).strftime("%Y-%m-%d")
+    since = (datetime.now(timezone.utc) - timedelta(days=90)).strftime("%Y-%m-%d")
     commits = _git(root, ["rev-list", "--count", f"--since={since}", "HEAD"])
     contributors = _git(root, ["shortlog", "-sne", "HEAD"])
     latest = _git(root, ["log", "-1", "--format=%cI"])
