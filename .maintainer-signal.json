@@ -1,6 +1,6 @@
 {
   "project_name": "Maintainer Signal Kit",
-  "repository_url": "",
+  "repository_url": "https://github.com/ismailskr12/maintainer-signal-kit",
   "maintainer_role": "Primary maintainer responsible for product direction, implementation, documentation, issue triage, release planning, and security response.",
   "project_mission": "Help open-source maintainers prepare honest, evidence-backed support applications and maintenance health reports without exaggerating adoption or hiding repository gaps.",
   "ecosystem_impact": "The project targets maintainers of small and growing open-source repositories who need a repeatable way to collect governance, security, CI, test, release, and activity evidence before applying to support programs.",
