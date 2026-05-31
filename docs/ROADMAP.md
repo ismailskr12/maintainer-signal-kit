@@ -3,10 +3,10 @@
 ## Near Term
 
 - Add ecosystem-specific package signals for npm, PyPI, crates.io, and Go.
-- Add a redaction pass for generated public reports.
 - Add signed evidence bundles for maintainers who want reproducible application packs.
 - Add repository comparison mode for maintainers who manage multiple projects.
-- Add issue and pull request activity summaries from GitHub's public API.
+- Add richer redaction patterns and severity levels.
+- Add package registry checks for verified release/download evidence.
 
 ## Later
 

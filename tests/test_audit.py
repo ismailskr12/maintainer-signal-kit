@@ -8,10 +8,12 @@ from pathlib import Path
 
 from maintainer_signal_kit import audit_repository
 from maintainer_signal_kit.cli import main
-from maintainer_signal_kit.github import github_metrics_to_markdown, parse_github_repository
-from maintainer_signal_kit.models import GitHubMetrics
+from maintainer_signal_kit.github import github_activity_to_markdown, github_metrics_to_markdown, parse_github_repository
+from maintainer_signal_kit.models import GitHubActivitySummary, GitHubMetrics
 from maintainer_signal_kit.pack import build_evidence_pack
 from maintainer_signal_kit.profile import load_project_profile
+from maintainer_signal_kit.readiness import render_readiness_report
+from maintainer_signal_kit.redact import redact_text, scan_text
 from maintainer_signal_kit.render import render_json, render_markdown
 
 
@@ -93,6 +95,8 @@ class AuditRepositoryTests(unittest.TestCase):
                 "maintenance-report.html",
                 "maintenance-report.json",
                 "maintenance-report.md",
+                "readiness-report.md",
+                "redaction-report.md",
             },
         )
 
@@ -129,6 +133,44 @@ class AuditRepositoryTests(unittest.TestCase):
 
         self.assertIn("Stars: 3", rendered)
         self.assertIn("Topics: oss, maintenance", rendered)
+
+    def test_github_activity_markdown_includes_workflow_counts(self) -> None:
+        activity = GitHubActivitySummary(
+            repository="owner/repo",
+            contributors_observed=2,
+            open_pull_requests=1,
+            recent_closed_pull_requests=4,
+            open_issues_only=3,
+            recent_closed_issues_only=5,
+            release_count_observed=2,
+            languages=("Python", "Shell"),
+        )
+
+        rendered = github_activity_to_markdown(activity)
+
+        self.assertIn("Contributors observed: 2", rendered)
+        self.assertIn("Languages: Python, Shell", rendered)
+
+    def test_redaction_finds_and_masks_sensitive_text(self) -> None:
+        text = "contact me@example.com with API_KEY=secret"
+
+        findings = scan_text(text, "demo.txt")
+        redacted = redact_text(text)
+
+        self.assertEqual(len(findings), 2)
+        self.assertIn("[REDACTED:email]", redacted)
+        self.assertIn("[REDACTED:api-key]", redacted)
+
+    def test_readiness_report_states_caveat(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "README.md").write_text("# Demo\n", encoding="utf-8")
+            report = audit_repository(root)
+
+        rendered = render_readiness_report(report)
+
+        self.assertIn("Selection Readiness", rendered)
+        self.assertIn("does not guarantee acceptance", rendered)
 
     def test_cli_audit_writes_markdown(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

@@ -1,5 +1,15 @@
 # Changelog
 
+# 0.4.0
+
+- Added readiness and redaction CLI commands.
+- Added public GitHub activity summaries for issues, pull requests,
+  contributors, releases, and languages.
+- Evidence packs now include readiness and redaction reports.
+- Added AI usage policy, adoption plan, and threat model documentation.
+- Added support policy, Dependabot configuration, and example project profile.
+- Expanded tests for activity rendering, redaction, readiness, and pack output.
+
 # 0.3.0
 
 - Added public GitHub metrics command for user-selected repositories.

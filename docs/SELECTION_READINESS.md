@@ -13,6 +13,9 @@ It is not a guarantee of selection.
 - Evidence pack command generates an application draft and checklist.
 - GitHub metrics command can fetch public repository metadata without requiring
   private tokens.
+- GitHub activity command can summarize public issue, pull request, contributor,
+  release, and language signals.
+- Redaction report helps prevent accidental sharing of sensitive generated text.
 - The project has release tags and documented release workflow.
 
 ## Weak Signals

@@ -36,3 +36,9 @@ Example GitHub metrics command:
 ```bash
 python -m maintainer_signal_kit github ismailskr12/maintainer-signal-kit
 ```
+
+Example readiness command:
+
+```bash
+python -m maintainer_signal_kit readiness .
+```

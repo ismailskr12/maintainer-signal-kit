@@ -12,6 +12,8 @@ This guide documents the expected maintenance workflow for Maintainer Signal Kit
    ```bash
    python -m unittest discover -s tests
    python -m maintainer_signal_kit pack . --output-dir maintainer-evidence-pack
+   python -m maintainer_signal_kit readiness .
+   python -m maintainer_signal_kit redact maintainer-evidence-pack/application-draft.md
    ```
 
 4. Commit the release changes.
@@ -30,6 +32,7 @@ This guide documents the expected maintenance workflow for Maintainer Signal Kit
 - Avoid collecting or transmitting private repository data.
 - Treat repository metadata as public only after the maintainer confirms it is
   safe to share.
+- Make network access explicit and documented.
 
 ## Issue Triage
 

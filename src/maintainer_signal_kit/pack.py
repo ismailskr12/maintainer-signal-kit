@@ -4,6 +4,8 @@ from pathlib import Path
 
 from .audit import audit_repository
 from .profile import load_project_profile
+from .readiness import render_readiness_report
+from .redact import render_redaction_report, scan_text
 from .render import (
     render_application_draft,
     render_evidence_checklist,
@@ -26,7 +28,11 @@ def build_evidence_pack(repo_path: str | Path, output_dir: str | Path) -> tuple[
         "maintenance-report.html": render_html(report),
         "application-draft.md": render_application_draft(report, profile),
         "evidence-checklist.md": render_evidence_checklist(report),
+        "readiness-report.md": render_readiness_report(report),
     }
+    files["redaction-report.md"] = render_redaction_report(
+        scan_text("\n\n".join(files.values()), "generated evidence pack")
+    )
 
     written: list[Path] = []
     for name, content in files.items():

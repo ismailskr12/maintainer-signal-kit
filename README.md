@@ -69,6 +69,19 @@ Fetch public GitHub metrics:
 python -m maintainer_signal_kit github ismailskr12/maintainer-signal-kit
 ```
 
+Fetch public GitHub maintenance activity:
+
+```bash
+python -m maintainer_signal_kit activity ismailskr12/maintainer-signal-kit
+```
+
+Render readiness notes or check a draft for sensitive text:
+
+```bash
+python -m maintainer_signal_kit readiness .
+python -m maintainer_signal_kit redact maintainer-evidence-pack/application-draft.md
+```
+
 ## Example
 
 ```text
@@ -134,6 +147,9 @@ python -m maintainer_signal_kit pack .
 - [Sample output](docs/SAMPLE_OUTPUT.md)
 - [Selection readiness notes](docs/SELECTION_READINESS.md)
 - [Program research notes](docs/PROGRAM_RESEARCH_NOTES.md)
+- [AI usage policy](docs/AI_USAGE_POLICY.md)
+- [Adoption plan](docs/ADOPTION_PLAN.md)
+- [Threat model](docs/THREAT_MODEL.md)
 
 ## License
 

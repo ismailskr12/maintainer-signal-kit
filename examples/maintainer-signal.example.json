@@ -1,0 +1,14 @@
+{
+  "project_name": "Example Maintainer Tool",
+  "repository_url": "https://github.com/example/maintainer-tool",
+  "maintainer_role": "Primary maintainer responsible for releases, review, and security response.",
+  "project_mission": "Help maintainers prepare public evidence packs without overstating adoption.",
+  "ecosystem_impact": "Replace this with verified usage, stars, downloads, dependents, or user stories.",
+  "credit_usage_plan": "Use credits for pull request review, issue triage, release notes, and test generation.",
+  "additional_context": "Generated drafts should be reviewed before submission.",
+  "public_evidence": [
+    "README and license are present.",
+    "CI runs on supported Python versions.",
+    "Security policy and contribution guide are documented."
+  ]
+}

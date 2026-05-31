@@ -11,6 +11,10 @@ Maintainer Signal Kit is intentionally small and dependency-light.
 - `profile.py`: reads optional `.maintainer-signal.json` project context.
 - `github.py`: fetches public GitHub repository metrics for explicit
   user-selected repositories.
+- `readiness.py`: renders a conservative readiness report from local audit
+  evidence.
+- `redact.py`: scans generated text for obvious sensitive values before public
+  sharing.
 - `pack.py`: writes the complete evidence pack.
 - `cli.py`: exposes the command-line interface.
 
@@ -21,8 +25,9 @@ Maintainer Signal Kit is intentionally small and dependency-light.
 3. Optional profile context is loaded from `.maintainer-signal.json`.
 4. Renderers produce human-readable and machine-readable outputs.
 5. The `pack` command writes the outputs to a local directory.
-6. The optional `github` command fetches public repository metrics from GitHub's
-   API for evidence gathering.
+6. The optional `github` and `activity` commands fetch public repository metrics
+   from GitHub's API for evidence gathering.
+7. The pack command also writes readiness and redaction reports.
 
 ## Safety Model
 

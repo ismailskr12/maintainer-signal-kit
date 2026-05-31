@@ -69,3 +69,23 @@ class GitHubMetrics:
     archived: bool
     disabled: bool
     topics: tuple[str, ...] = field(default_factory=tuple)
+
+
+@dataclass(frozen=True)
+class GitHubActivitySummary:
+    repository: str
+    contributors_observed: int
+    open_pull_requests: int
+    recent_closed_pull_requests: int
+    open_issues_only: int
+    recent_closed_issues_only: int
+    release_count_observed: int
+    languages: tuple[str, ...] = field(default_factory=tuple)
+
+
+@dataclass(frozen=True)
+class SensitiveFinding:
+    category: str
+    path: str
+    line: int
+    preview: str
