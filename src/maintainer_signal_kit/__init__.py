@@ -5,4 +5,4 @@ from .models import AuditReport
 
 __all__ = ["AuditReport", "audit_repository"]
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"

@@ -1,5 +1,14 @@
 # Changelog
 
+# 0.3.0
+
+- Added public GitHub metrics command for user-selected repositories.
+- Added Codex workflow documentation and agent instructions.
+- Added selection readiness notes and public metrics example.
+- Added program research notes comparing current readiness with stronger public
+  OSS examples.
+- Expanded tests for GitHub repository parsing and metrics rendering.
+
 ## 0.2.0
 
 - Added evidence pack generation with Markdown, JSON, HTML, application draft,

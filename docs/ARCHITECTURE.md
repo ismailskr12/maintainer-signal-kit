@@ -9,6 +9,8 @@ Maintainer Signal Kit is intentionally small and dependency-light.
   profile data.
 - `render.py`: renders reports and drafts as Markdown, JSON, and HTML.
 - `profile.py`: reads optional `.maintainer-signal.json` project context.
+- `github.py`: fetches public GitHub repository metrics for explicit
+  user-selected repositories.
 - `pack.py`: writes the complete evidence pack.
 - `cli.py`: exposes the command-line interface.
 
@@ -19,9 +21,12 @@ Maintainer Signal Kit is intentionally small and dependency-light.
 3. Optional profile context is loaded from `.maintainer-signal.json`.
 4. Renderers produce human-readable and machine-readable outputs.
 5. The `pack` command writes the outputs to a local directory.
+6. The optional `github` command fetches public repository metrics from GitHub's
+   API for evidence gathering.
 
 ## Safety Model
 
-The tool is designed for local, read-oriented repository inspection. It does not
-call external APIs, upload files, or make claims based on private data. Future
-network integrations should be optional and explicit.
+The tool is designed for local, read-oriented repository inspection. The only
+network feature is the explicit `github` command, which reads public repository
+metadata from GitHub for a user-selected repository. It does not upload files or
+make claims based on private data.

@@ -9,6 +9,8 @@
   "public_evidence": [
     "Includes a working Python CLI with Markdown, JSON, and HTML reports.",
     "Includes a maintainer evidence pack generator with application draft and checklist outputs.",
-    "Includes governance files, security policy, contribution guide, issue templates, CI, tests, and an initial release tag."
+    "Includes public GitHub metrics collection for user-selected repositories.",
+    "Includes Codex workflow documentation for PR review, issue triage, release prep, and security review.",
+    "Includes governance files, security policy, contribution guide, issue templates, CI, tests, and release tags."
   ]
 }

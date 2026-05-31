@@ -63,6 +63,12 @@ python -m maintainer_signal_kit pack . --output-dir maintainer-evidence-pack
 The pack includes Markdown, JSON, HTML, an application draft, and an evidence
 checklist.
 
+Fetch public GitHub metrics:
+
+```bash
+python -m maintainer_signal_kit github ismailskr12/maintainer-signal-kit
+```
+
 ## Example
 
 ```text
@@ -122,9 +128,12 @@ python -m maintainer_signal_kit pack .
 
 - [Product brief](docs/PRODUCT_BRIEF.md)
 - [Architecture](docs/ARCHITECTURE.md)
+- [Codex workflows](docs/CODEX_WORKFLOWS.md)
 - [Maintainer guide](docs/MAINTAINER_GUIDE.md)
 - [Example evidence pack](docs/EXAMPLE_EVIDENCE_PACK.md)
 - [Sample output](docs/SAMPLE_OUTPUT.md)
+- [Selection readiness notes](docs/SELECTION_READINESS.md)
+- [Program research notes](docs/PROGRAM_RESEARCH_NOTES.md)
 
 ## License
 

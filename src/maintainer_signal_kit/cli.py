@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 
 from .audit import audit_repository
+from .github import fetch_github_metrics, github_metrics_to_json, github_metrics_to_markdown
 from .pack import build_evidence_pack
 from .render import render_html, render_json, render_markdown
 
@@ -32,6 +33,16 @@ def build_parser() -> argparse.ArgumentParser:
         default="maintainer-evidence-pack",
         help="Directory for generated report and application draft files.",
     )
+
+    github = subparsers.add_parser("github", help="Fetch public GitHub repository metrics.")
+    github.add_argument("repository", help="GitHub repository URL or owner/name.")
+    github.add_argument(
+        "--format",
+        choices=("markdown", "json"),
+        default="markdown",
+        help="Output format.",
+    )
+    github.add_argument("--output", help="Write output to a file instead of stdout.")
     return parser
 
 
@@ -57,6 +68,19 @@ def main(argv: list[str] | None = None) -> int:
         written = build_evidence_pack(args.path, args.output_dir)
         for path in written:
             print(path)
+        return 0
+
+    if args.command == "github":
+        metrics = fetch_github_metrics(args.repository)
+        rendered = (
+            github_metrics_to_json(metrics)
+            if args.format == "json"
+            else github_metrics_to_markdown(metrics)
+        )
+        if args.output:
+            Path(args.output).write_text(rendered, encoding="utf-8")
+        else:
+            print(rendered, end="")
         return 0
 
     parser.error(f"Unknown command: {args.command}")

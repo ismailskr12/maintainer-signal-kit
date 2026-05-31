@@ -30,3 +30,9 @@ Example report excerpt:
 ```
 
 Generated application drafts should be reviewed by a human before submission.
+
+Example GitHub metrics command:
+
+```bash
+python -m maintainer_signal_kit github ismailskr12/maintainer-signal-kit
+```

@@ -2,9 +2,14 @@ from __future__ import annotations
 
 import tempfile
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
 
 from maintainer_signal_kit import audit_repository
+from maintainer_signal_kit.cli import main
+from maintainer_signal_kit.github import github_metrics_to_markdown, parse_github_repository
+from maintainer_signal_kit.models import GitHubMetrics
 from maintainer_signal_kit.pack import build_evidence_pack
 from maintainer_signal_kit.profile import load_project_profile
 from maintainer_signal_kit.render import render_json, render_markdown
@@ -90,6 +95,52 @@ class AuditRepositoryTests(unittest.TestCase):
                 "maintenance-report.md",
             },
         )
+
+    def test_parse_github_repository_accepts_url_and_slug(self) -> None:
+        self.assertEqual(
+            parse_github_repository("https://github.com/ismailskr12/maintainer-signal-kit"),
+            "ismailskr12/maintainer-signal-kit",
+        )
+        self.assertEqual(
+            parse_github_repository("ismailskr12/maintainer-signal-kit.git"),
+            "ismailskr12/maintainer-signal-kit",
+        )
+
+    def test_github_metrics_markdown_includes_public_counts(self) -> None:
+        metrics = GitHubMetrics(
+            repository="owner/repo",
+            url="https://github.com/owner/repo",
+            description="Demo",
+            stars=3,
+            forks=2,
+            open_issues=1,
+            watchers=4,
+            default_branch="main",
+            license_name="MIT",
+            created_at="2026-01-01T00:00:00Z",
+            updated_at="2026-01-02T00:00:00Z",
+            pushed_at="2026-01-03T00:00:00Z",
+            archived=False,
+            disabled=False,
+            topics=("oss", "maintenance"),
+        )
+
+        rendered = github_metrics_to_markdown(metrics)
+
+        self.assertIn("Stars: 3", rendered)
+        self.assertIn("Topics: oss, maintenance", rendered)
+
+    def test_cli_audit_writes_markdown(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "README.md").write_text("# Demo\n", encoding="utf-8")
+            output = StringIO()
+
+            with redirect_stdout(output):
+                exit_code = main(["audit", str(root)])
+
+        self.assertEqual(exit_code, 0)
+        self.assertIn("Maintenance Signal Report", output.getvalue())
 
 
 if __name__ == "__main__":

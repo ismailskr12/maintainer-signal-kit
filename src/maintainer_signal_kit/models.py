@@ -50,3 +50,22 @@ class ProjectProfile:
     credit_usage_plan: str = ""
     additional_context: str = ""
     public_evidence: tuple[str, ...] = field(default_factory=tuple)
+
+
+@dataclass(frozen=True)
+class GitHubMetrics:
+    repository: str
+    url: str
+    description: str
+    stars: int
+    forks: int
+    open_issues: int
+    watchers: int
+    default_branch: str
+    license_name: str | None
+    created_at: str | None
+    updated_at: str | None
+    pushed_at: str | None
+    archived: bool
+    disabled: bool
+    topics: tuple[str, ...] = field(default_factory=tuple)

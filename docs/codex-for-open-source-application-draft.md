@@ -18,22 +18,24 @@ management, security response, documentation, or community support.]
 
 ## Repository
 
-[Add the public GitHub repository URL.]
+https://github.com/ismailskr12/maintainer-signal-kit
 
 ## Why This Repository Qualifies
 
-[Use concrete evidence only: GitHub stars, forks, monthly package downloads,
-dependent projects, production users, ecosystem importance, recent releases,
-security relevance, or community usage. Do not claim adoption that cannot be
-verified.]
+Maintainer Signal Kit directly supports open-source maintenance work: it audits
+repository health, generates evidence packs, fetches public GitHub metrics, and
+keeps application drafts conservative when adoption claims are not yet verified.
+The repository includes CI, tests, release tags, security policy, contribution
+guide, maintainer guide, Codex workflow docs, and issue/PR templates.
 
 ## How API Credits Would Be Used
 
-[Describe maintainer workflows: pull request review, regression testing,
-release note drafting, issue triage, security patch review, or automation that
-directly supports the open-source project.]
+API credits would support pull request review, issue triage, release note
+drafting, test improvements, security-sensitive change review, and generation
+of public maintenance evidence packs for open-source repositories.
 
 ## Anything Else
 
-[Optional context about maintainer workload, project importance, or why the
-project does not fit common metrics but still matters.]
+The project is new, so public adoption metrics are intentionally not overstated.
+Its value is aligned with the program's maintainer-support goals: reducing
+review, release, security, and evidence-preparation overhead for OSS maintainers.
