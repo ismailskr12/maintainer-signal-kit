@@ -118,6 +118,14 @@ python -m maintainer_signal_kit audit .
 python -m maintainer_signal_kit pack .
 ```
 
+## Maintainer Documentation
+
+- [Product brief](docs/PRODUCT_BRIEF.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Maintainer guide](docs/MAINTAINER_GUIDE.md)
+- [Example evidence pack](docs/EXAMPLE_EVIDENCE_PACK.md)
+- [Sample output](docs/SAMPLE_OUTPUT.md)
+
 ## License
 
 MIT
