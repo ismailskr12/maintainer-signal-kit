@@ -19,6 +19,7 @@ class GitActivity:
     contributor_count: int = 0
     latest_commit_date: str | None = None
     tag_count: int = 0
+    remote_url: str | None = None
     detail: str = "git metadata unavailable"
 
 
@@ -37,3 +38,15 @@ class AuditReport:
         if self.max_score == 0:
             return 0
         return round((self.score / self.max_score) * 100)
+
+
+@dataclass(frozen=True)
+class ProjectProfile:
+    project_name: str = ""
+    repository_url: str = ""
+    maintainer_role: str = ""
+    project_mission: str = ""
+    ecosystem_impact: str = ""
+    credit_usage_plan: str = ""
+    additional_context: str = ""
+    public_evidence: tuple[str, ...] = field(default_factory=tuple)

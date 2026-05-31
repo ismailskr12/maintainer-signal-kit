@@ -4,7 +4,8 @@ import argparse
 from pathlib import Path
 
 from .audit import audit_repository
-from .render import render_json, render_markdown
+from .pack import build_evidence_pack
+from .render import render_html, render_json, render_markdown
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -18,11 +19,19 @@ def build_parser() -> argparse.ArgumentParser:
     audit.add_argument("path", nargs="?", default=".", help="Repository path to audit.")
     audit.add_argument(
         "--format",
-        choices=("markdown", "json"),
+        choices=("markdown", "json", "html"),
         default="markdown",
         help="Output format.",
     )
     audit.add_argument("--output", help="Write output to a file instead of stdout.")
+
+    pack = subparsers.add_parser("pack", help="Build a maintainer evidence pack.")
+    pack.add_argument("path", nargs="?", default=".", help="Repository path to audit.")
+    pack.add_argument(
+        "--output-dir",
+        default="maintainer-evidence-pack",
+        help="Directory for generated report and application draft files.",
+    )
     return parser
 
 
@@ -32,11 +41,22 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "audit":
         report = audit_repository(args.path)
-        rendered = render_json(report) if args.format == "json" else render_markdown(report)
+        renderers = {
+            "html": render_html,
+            "json": render_json,
+            "markdown": render_markdown,
+        }
+        rendered = renderers[args.format](report)
         if args.output:
             Path(args.output).write_text(rendered, encoding="utf-8")
         else:
             print(rendered, end="")
+        return 0
+
+    if args.command == "pack":
+        written = build_evidence_pack(args.path, args.output_dir)
+        for path in written:
+            print(path)
         return 0
 
     parser.error(f"Unknown command: {args.command}")

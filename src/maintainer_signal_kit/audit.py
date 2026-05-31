@@ -76,6 +76,7 @@ def _git_activity(root: Path) -> GitActivity:
     contributors = _git(root, ["shortlog", "-sne", "HEAD"])
     latest = _git(root, ["log", "-1", "--format=%cI"])
     tags = _git(root, ["tag", "--list"])
+    remote_url = _git(root, ["remote", "get-url", "origin"])
 
     if commits is None:
         return GitActivity(available=False, detail="git command failed")
@@ -94,6 +95,7 @@ def _git_activity(root: Path) -> GitActivity:
         contributor_count=contributor_count,
         latest_commit_date=latest.strip() if latest else None,
         tag_count=tag_count,
+        remote_url=remote_url.strip() if remote_url else None,
         detail="git metadata collected",
     )
 

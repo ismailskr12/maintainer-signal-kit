@@ -1,7 +1,14 @@
 # Codex for Open Source Application Draft
 
-This file is a truthful draft template. Replace every bracketed placeholder
-with verified information before submitting any application.
+This file is a truthful draft template. The CLI can also generate a fresher
+draft with:
+
+```bash
+python -m maintainer_signal_kit pack .
+```
+
+Replace every bracketed placeholder with verified information before submitting
+any application.
 
 ## Role
 

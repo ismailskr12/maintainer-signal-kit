@@ -1,0 +1,14 @@
+{
+  "project_name": "Maintainer Signal Kit",
+  "repository_url": "",
+  "maintainer_role": "Primary maintainer responsible for product direction, implementation, documentation, issue triage, release planning, and security response.",
+  "project_mission": "Help open-source maintainers prepare honest, evidence-backed support applications and maintenance health reports without exaggerating adoption or hiding repository gaps.",
+  "ecosystem_impact": "The project targets maintainers of small and growing open-source repositories who need a repeatable way to collect governance, security, CI, test, release, and activity evidence before applying to support programs.",
+  "credit_usage_plan": "Use AI coding and API credits to review pull requests, summarize issue queues, improve test coverage, draft release notes, inspect security-sensitive changes, and generate public maintenance reports for open-source projects.",
+  "additional_context": "The project is intentionally evidence-first: generated drafts include placeholders when usage or maintainer claims are not yet verified.",
+  "public_evidence": [
+    "Includes a working Python CLI with Markdown, JSON, and HTML reports.",
+    "Includes a maintainer evidence pack generator with application draft and checklist outputs.",
+    "Includes governance files, security policy, contribution guide, issue templates, CI, tests, and an initial release tag."
+  ]
+}

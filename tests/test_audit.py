@@ -5,6 +5,8 @@ import unittest
 from pathlib import Path
 
 from maintainer_signal_kit import audit_repository
+from maintainer_signal_kit.pack import build_evidence_pack
+from maintainer_signal_kit.profile import load_project_profile
 from maintainer_signal_kit.render import render_json, render_markdown
 
 
@@ -50,6 +52,44 @@ class AuditRepositoryTests(unittest.TestCase):
 
         self.assertIn('"repository_name"', rendered)
         self.assertIn('"signals"', rendered)
+
+    def test_profile_loader_reads_project_context(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / ".maintainer-signal.json").write_text(
+                '{"project_name":"Demo","public_evidence":["README present"]}',
+                encoding="utf-8",
+            )
+
+            profile = load_project_profile(root)
+
+        self.assertEqual(profile.project_name, "Demo")
+        self.assertEqual(profile.public_evidence, ("README present",))
+
+    def test_evidence_pack_writes_expected_files(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "repo"
+            output = Path(directory) / "pack"
+            root.mkdir()
+            (root / "README.md").write_text("# Demo\n", encoding="utf-8")
+            (root / ".maintainer-signal.json").write_text(
+                '{"project_name":"Demo","maintainer_role":"Primary maintainer"}',
+                encoding="utf-8",
+            )
+
+            written = build_evidence_pack(root, output)
+
+        names = {path.name for path in written}
+        self.assertEqual(
+            names,
+            {
+                "application-draft.md",
+                "evidence-checklist.md",
+                "maintenance-report.html",
+                "maintenance-report.json",
+                "maintenance-report.md",
+            },
+        )
 
 
 if __name__ == "__main__":
